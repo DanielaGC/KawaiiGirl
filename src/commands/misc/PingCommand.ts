@@ -19,7 +19,7 @@ export default class PingCommand extends CommandContext {
                 embed.setColor(Colors.default)
                 embed.setFooter(`Eu estou com ${this.client.shards.size} shards`)
                 this.client.shards.forEach((shard: Shard) => {
-                    let shardUptime = moment.duration(Date.now() - shard.lastHeartbeatReceived).format("dd:hh:mm:ss", { stopTrim: "d" })
+                    let shardUptime = moment.duration(Date.now() - this.client.shardUptime.get(shard.id).uptime).format("dd:hh:mm:ss", { stopTrim: "d" })
                     const shardStatus = shard.status === "ready" ? "CONNECTED" : shard.status === "disconnected" ? "DISCONNECTED" : shard.status === "connecting" ? "CONNECTING" : "HANDSHAKING"
                     shardList.push(embed.addField(`Shard ID: ${shard.id}`, `Websocket ping: ${shard.latency}\nStatus: ${shardStatus}\nUptime: ${shardUptime}`, true))
                 })
