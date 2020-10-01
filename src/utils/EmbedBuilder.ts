@@ -1,14 +1,16 @@
+import { EmbedFooter, EmbedField, EmbedImage, EmbedAuthor } from "eris"
+
 export default class EmbedBuilder {
-    fields: any
-    author: object
+    fields: EmbedField[]
+    author: EmbedAuthor
     description: string
     color: number
     file: string[]
-    footer: object
+    footer: EmbedFooter
     image: object
-    timestamp: number
+    timestamp: string | Date
     title: string
-    thumbnail: object
+    thumbnail: EmbedImage
     url: string
     public constructor() {
         this.fields = []
@@ -57,7 +59,7 @@ export default class EmbedBuilder {
         return this
     }
 
-    public setTimestamp(time: number = new Date().getTime()) {
+    public setTimestamp(time: Date = new Date()) {
         this.timestamp = time
         return this
     }

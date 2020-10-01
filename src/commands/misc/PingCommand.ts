@@ -1,7 +1,8 @@
 import IllyaClient from "../../Client"
 import { Colors, CommandContext, EmbedBuilder } from "../../utils"
-const moment = require("moment")
-require("moment-duration-format")
+import moment from "moment"
+import "moment-duration-format"
+import { Message, Shard, TextChannel } from "eris"
 export default class PingCommand extends CommandContext {
     public constructor(client: IllyaClient) {
         super(client, {
@@ -9,31 +10,26 @@ export default class PingCommand extends CommandContext {
         })
     }
 
-    run(message: any, args: string[]) {
+    run(context: TextChannel, args: string[]) {
 
         switch (args[0]) {
             case "shards": {
                 const shardList = []
                 const embed = new EmbedBuilder()
                 embed.setColor(Colors.default)
-                embed.setFooter(`Eu estou com ${this.client.shards.size} shards`)
-                this.client.shards.forEach((shards: any) => {
-                    let shardStatus
-                    let shardUptime = moment.duration(Date.now() - shards.lastHeartbeatReceived).format("dd:hh:mm:ss", { stopTrim: "d" })
-                    if (shards.status === "ready") shardStatus = "CONNECTED"
-                    if (shards.status === "disconnected") shardStatus = "DISCONNECTED"
-                    if (shards.status === "connecting") shardStatus = "CONNECTING"
-                    if (shards.status === "handshaking") shardStatus = "HANDSHAKING"
-
-                    shardList.push(embed.addField(`Shard ID: ${shards.id}`, `Websocket ping: ${shards.latency}\nStatus: ${shardStatus}\nUptime: ${shardUptime}`, true))
+                embed.setFooter("Eu estou com " +  this.client.shards.size + " shards")
+                this.client.shards.forEach((shard: Shard) => {
+                    let shardUptime = moment.duration(Date.now() - shard.lastHeartbeatReceived).format()
+                    const shardStatus = shard.status === "ready" ? "CONNECTED" : shard.status === "disconnected" ? "DISCONNECTED" : shard.status === "connecting" ? "CONNECTING" : "HANDSHAKING"
+                    shardList.push(embed.addField("Shard ID: " + shard.id, "Websocket ping: " + shard.latency + "\n" + "Status: " + shardStatus + "\nUptime: " + shardUptime, true))
                 })
 
-                message.channel.createMessage({ embed: embed })
+                context.createMessage({ embed: embed })
             }
                 break;
             default: {
-                message.channel.createMessage(`🏓 Pong!\nWebsocket ping: ${message.channel.guild.shard.latency}ms!\nShard: ${message.channel.guild.shard.id}/${this.client.shards.size}`)
-            }
+                context.createMessage("🏓 Pong!\nWebsocket ping:" + context.channel.guild.shard.latency + "ms!\nShard: " + context.guild.shard.id + "/" + this.client.shards.size)
+            } //TODO Fix the damn type
         }
     }
 }
