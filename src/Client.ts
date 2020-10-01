@@ -4,14 +4,22 @@ import { readdir } from "fs"
 export default class IllyaClient extends Client {
     public aliases: any
     public commands: any
+    public shardUptime: any
     public constructor(token: string, options: object) {
         super(token, options)
 
         this.aliases = new Map()
         this.commands = new Map()
+        this.shardUptime = new Map()
     }
 
     public connect() {
+        this.shards.forEach((shard: any) => {
+            this.shardUptime.set(shard.id, {
+                shardID: shard.id,
+                uptime: 0
+            })
+        })
         return super.connect()
     }
 
