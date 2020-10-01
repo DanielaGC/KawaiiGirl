@@ -1,11 +1,12 @@
-import { EventContext, EmbedBuilder } from "../utils"
-const { prefix, owner } = require("../../config.json")
+import { EventContext } from "../utils"
+import { prefix, owner } from "../config.json"
+import { Message } from "eris"
 export default class MessageListener extends EventContext {
     public constructor(client: any) {
         super(client, "messageCreate")
     }
 
-    run(message: any) {
+    run(message: Message) {
         if (message.author.bot) return
         if (message.channel.type !== 0) return
 
