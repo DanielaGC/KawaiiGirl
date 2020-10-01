@@ -1,6 +1,7 @@
 {
-    "token": "you bot token",
-    "prefix": "you bot prefix",
+    "token": "your bot token",
+    "prefix": "your bot prefix",
+    owner: ["your user id"]
     "options": {
         "autoreconnect": true,
         "allowedMentions": {

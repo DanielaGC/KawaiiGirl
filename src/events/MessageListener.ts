@@ -1,5 +1,5 @@
 import { EventContext, EmbedBuilder } from "../utils"
-const { prefix } = require("../../config.json")
+const { prefix, owner } = require("../../config.json")
 export default class MessageListener extends EventContext {
     public constructor(client: any) {
         super(client, "messageCreate")
@@ -16,6 +16,8 @@ export default class MessageListener extends EventContext {
         const commands = this.client.commands.get(cmd) || this.client.commands.get(this.client.aliases.get(cmd))
 
         if (!commands) return
+        if (commands.config.dev && !owner.includes(message.author.id)) return
+        message.channel.sendTyping()
         commands.run(message, args)
     }
 }

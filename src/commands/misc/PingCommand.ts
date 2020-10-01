@@ -29,7 +29,7 @@ export default class PingCommand extends CommandContext {
             }
                 break;
             default: {
-                message.channel.createMessage(`🏓 Pong!\nWebsocket ping: ${message.channel.guild.shard.latency}ms!\n`)
+                message.channel.createMessage(`🏓 Pong!\nWebsocket ping: ${message.channel.guild.shard.latency}ms!\nShard: ${message.channel.guild.shard.id}/${this.client.shards.size}`)
             }
         }
     }

@@ -10,7 +10,9 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"eris": "^0.13.3"
+		"eris": "^0.13.3",
+		"moment": "^2.29.0",
+		"moment-duration-format": "^2.3.2"
 	},
 	"devDependencies": {
 		"@types/node": "^14.11.1",
