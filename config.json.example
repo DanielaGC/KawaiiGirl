@@ -1,0 +1,18 @@
+{
+    "token": "you bot token",
+    "prefix": "you bot prefix",
+    "options": {
+        "autoreconnect": true,
+        "allowedMentions": {
+            "everyone": false,
+            "roles": false,
+            "users": true
+        },
+        "getAllUsers": true,
+        "firstShardID": 0,
+        "restMode": true,
+        "defaultImageFormat": "png",
+        "defaultImageSize": 2048,
+        "maxShards": "auto"
+    }
+}
