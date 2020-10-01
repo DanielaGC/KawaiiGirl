@@ -1,5 +1,7 @@
 import IllyaClient from "../../Client"
 import { Colors, CommandContext, EmbedBuilder } from "../../utils"
+const moment = require("moment")
+require("moment-duration-format")
 export default class PingCommand extends CommandContext {
     public constructor(client: IllyaClient) {
         super(client, {
@@ -17,12 +19,13 @@ export default class PingCommand extends CommandContext {
                 embed.setFooter(`Eu estou com ${this.client.shards.size} shards`)
                 this.client.shards.forEach((shards: any) => {
                     let shardStatus
+                    let shardUptime = moment.duration(Date.now() - shards.lastHeartbeatReceived).format("dd:hh:mm:ss", { stopTrim: "d" })
                     if (shards.status === "ready") shardStatus = "CONNECTED"
                     if (shards.status === "disconnected") shardStatus = "DISCONNECTED"
                     if (shards.status === "connecting") shardStatus = "CONNECTING"
                     if (shards.status === "handshaking") shardStatus = "HANDSHAKING"
 
-                    shardList.push(embed.addField(`Shard ID: ${shards.id}`, `Websocket ping: ${shards.latency}\nStatus: ${shardStatus}`, true))
+                    shardList.push(embed.addField(`Shard ID: ${shards.id}`, `Websocket ping: ${shards.latency}\nStatus: ${shardStatus}\nUptime: ${shardUptime}`, true))
                 })
 
                 message.channel.createMessage({ embed: embed })
