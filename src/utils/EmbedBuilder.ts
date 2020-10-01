@@ -47,7 +47,7 @@ export default class EmbedBuilder {
         return this
     }
 
-    public setFooter(text: string, icon_url: string) {
+    public setFooter(text: string, icon_url: string = "") {
         this.footer = { text: text.toString().substr(0, 2048), icon_url }
         return this
     }

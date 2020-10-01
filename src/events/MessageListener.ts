@@ -16,14 +16,6 @@ export default class MessageListener extends EventContext {
         const commands = this.client.commands.get(cmd) || this.client.commands.get(this.client.aliases.get(cmd))
 
         if (!commands) return
-        const embed = new EmbedBuilder()
-        embed.setDescription("owo test uwu")
-        embed.setColor("#ffe7ba")
-        embed.addField("owo", "uwu", true)
-        embed.addField("owo", "uwu", true)
-        embed.addField("owo", "uwu", true)
-
-        message.channel.createMessage({ embed: embed })
         commands.run(message, args)
     }
 }
