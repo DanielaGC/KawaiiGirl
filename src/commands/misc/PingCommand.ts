@@ -10,7 +10,7 @@ export default class PingCommand extends CommandContext {
         })
     }
 
-    run(context: TextChannel, args: string[]) {
+    run(context: Message, args: string[]) {
 
         switch (args[0]) {
             case "shards": {
@@ -24,12 +24,13 @@ export default class PingCommand extends CommandContext {
                     shardList.push(embed.addField("Shard ID: " + shard.id, "Websocket ping: " + shard.latency + "\n" + "Status: " + shardStatus + "\nUptime: " + shardUptime, true))
                 })
 
-                context.createMessage({ embed: embed })
+                context.channel.createMessage({ embed: embed })
             }
                 break;
             default: {
-                context.createMessage("🏓 Pong!\nWebsocket ping:" + context.channel.guild.shard.latency + "ms!\nShard: " + context.guild.shard.id + "/" + this.client.shards.size)
-            } //TODO Fix the damn type
+                context.channel = context.channel as TextChannel
+                context.channel.createMessage("🏓 Pong!\nWebsocket ping: " + context.channel.guild.shard.latency + "ms!\nShard: " + context.channel.guild.shard.id + "/" + this.client.shards.size)
+            }
         }
     }
 }
