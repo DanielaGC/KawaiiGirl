@@ -1,8 +1,9 @@
 import { EventContext } from "../utils"
 import { prefix, owner } from "../config.json"
 import { Message } from "eris"
+import IllyaClient from "../Client"
 export default class MessageListener extends EventContext {
-    public constructor(client: any) {
+    public constructor(client: IllyaClient) {
         super(client, "messageCreate")
     }
 

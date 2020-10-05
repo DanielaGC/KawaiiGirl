@@ -11,7 +11,6 @@ export default class PingCommand extends CommandContext {
     }
 
     run(context: Message, args: string[]) {
-        
         switch (args[0]) {
             case "shards": {
                 const shardList = []
@@ -28,8 +27,9 @@ export default class PingCommand extends CommandContext {
             }
                 break;
             default: {
-                context.channel.createMessage(`🏓 Pong!\nWebsocket ping: ${this.client.guilds.get(context.guildID).shard.latency}ms!\nShard: ${this.client.guilds.get(context.guildID).shard.id}/${this.client.shards.size}`)
-            } //TODO Fix the damn type
+                context.channel = context.channel as TextChannel
+                context.channel.createMessage("🏓 Pong!\nWebsocket ping: " + context.channel.guild.shard.latency + "ms!\nShard: " + context.channel.guild.shard.id + "/" + this.client.shards.size)
+            }
         }
     }
 }
