@@ -11,8 +11,10 @@
 	"license": "ISC",
 	"dependencies": {
 		"eris": "^0.13.3",
+		"ffmpeg-static": "^4.2.7",
 		"moment": "^2.29.0",
 		"moment-duration-format": "^2.3.2",
+		"node-opus": "^0.3.3",
 		"ts-node-dev": "^1.0.0-pre.63"
 	},
 	"devDependencies": {
