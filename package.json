@@ -10,11 +10,13 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@discordjs/opus": "^0.3.2",
 		"eris": "^0.13.3",
+		"ffmpeg": "0.0.4",
 		"ffmpeg-static": "^4.2.7",
 		"moment": "^2.29.0",
 		"moment-duration-format": "^2.3.2",
-		"node-opus": "^0.3.3",
+		"stream-player": "^0.3.0",
 		"ts-node-dev": "^1.0.0-pre.63"
 	},
 	"devDependencies": {
