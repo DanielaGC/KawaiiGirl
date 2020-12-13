@@ -1,4 +1,4 @@
-import { EmbedFooter, EmbedField, EmbedImage, EmbedAuthor } from "eris"
+import { EmbedFooter, EmbedField, EmbedImage, EmbedAuthor } from 'eris'
 
 export default class EmbedBuilder {
     fields: EmbedField[]
@@ -32,14 +32,14 @@ export default class EmbedBuilder {
     }
 
     private _resolveColor(color: any) {
-        if (typeof color === "string") {
-            if (color === "RANDOM") return Math.floor(Math.random() * (0xFFFFFF))
-            color = parseInt(color.replace("#", ""), 16)
+        if (typeof color === 'string') {
+            if (color === 'RANDOM') return Math.floor(Math.random() * (0xFFFFFF))
+            color = parseInt(color.replace('#', ''), 16)
             return color
         }
     }
 
-    public setColor(color: any) {
+    public setColor(color: string) {
         this.color = this._resolveColor(color)
         return this
     }
@@ -49,7 +49,7 @@ export default class EmbedBuilder {
         return this
     }
 
-    public setFooter(text: string, icon_url: string = "") {
+    public setFooter(text: string, icon_url: string = '') {
         this.footer = { text: text.toString().substr(0, 2048), icon_url }
         return this
     }
@@ -88,7 +88,7 @@ export default class EmbedBuilder {
     }
 
     public addBlankField(inline: boolean = false) {
-        return this.addField("\u200B", "\u200B", inline)
+        return this.addField('\u200B', '\u200B', inline)
     }
 
     attachFile(file: string[]) {

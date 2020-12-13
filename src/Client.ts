@@ -1,5 +1,5 @@
-import { Client } from "eris"
-import { readdir } from "fs"
+import { Client, Shard } from 'eris'
+import { readdir } from 'fs'
 
 export default class IllyaClient extends Client {
     public aliases: any
@@ -14,7 +14,7 @@ export default class IllyaClient extends Client {
     }
 
     public connect() {
-        this.shards.forEach((shard: any) => {
+        this.shards.forEach((shard: Shard) => {
             this.shardUptime.set(shard.id, {
                 shardID: shard.id,
                 uptime: 0
@@ -48,11 +48,11 @@ export default class IllyaClient extends Client {
         readdir(`${__dirname}/${path}`, (err, f) => {
             if (err) return console.error(err)
 
-            for (let files of f) {
+            f.forEach((files) => {
                 const Events = require(`${__dirname}/${path}/${files}`).default
                 const events = new Events(this)
                 super.on(events.name, (...args) => events.run(...args))
-            }
+            })
         })
     }
 }

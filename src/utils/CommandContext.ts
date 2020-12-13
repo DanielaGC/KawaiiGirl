@@ -1,7 +1,9 @@
+import IllyaClient from '../Client'
+
 export default class CommandContext {
-    public client: any
+    public client: IllyaClient
     public config: object
-    public constructor(client: any, options: any) {
+    public constructor(client: IllyaClient, options: any) {
         this.client = client
         this.config = {
             name: options.name,

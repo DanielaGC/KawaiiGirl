@@ -1,9 +1,9 @@
-import IllyaClient from "../Client"
-import { EventContext } from "../utils"
+import IllyaClient from '../Client'
+import { EventContext } from '../utils'
 
 export default class ShardReadyListener extends EventContext {
     public constructor(client: IllyaClient) {
-        super(client, "shardReady")
+        super(client, 'shardReady')
     }
 
     run(id: number) {
