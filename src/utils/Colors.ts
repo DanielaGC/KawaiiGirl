@@ -1,3 +1,3 @@
 module.exports = {
-    default: '#ffe7ba'
+  default: '#ffe7ba'
 }
