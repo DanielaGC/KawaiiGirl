@@ -1,22 +1,34 @@
-import IllyaClient from '../Client'
-import { EventContext } from '../utils'
-const { prefix } = require('../config.json')
+import { ActivitiesOptions } from 'discord.js'
+import { IllyaClient } from '../Client'
+import { EventListener } from '../utils'
 
-export default class ReadyListener extends EventContext {
+export class ReadyListener extends EventListener {
   public constructor(client: IllyaClient) {
     super(client, 'ready')
   }
 
   run() {
-    const status: any = [
-      { name: 'Fate/kaleid liner Prisma☆Illya', type: 3 },
-      { name: 'Fate/kaleid liner Prisma☆Illya 2wei Herz!', type: 3 },
-      { name: 'Fate/kaleid liner Prisma☆Illya 3rei!!', type: 3 },
-      { name: 'Fate/kaleid liner Prisma☆Illya: Sekka no Chikai', type: 3 },
-      { name: 'Fate/kaleid liner Prisma☆Illya Movie 2', type: 3 },
-      { name: `${prefix}help | https://github.com/DanielaGC/KawaiiGirl`, type: 1, url: 'https://twitch.tv/danielagc' }
+    const activities: ActivitiesOptions[] = [
+      { name: `Use ${process.env.PREFIX}comandos para saber dos meus comandos` },
+      { name: `Eu conheço ${this.client.users.cache.size} pessoas em ${this.client.guilds.cache.size} servidores diferentes` },
+      { name: `Se precisa de ajuda, dê ${process.env.PREFIX}ajuda` },
+      { name: `Conhecimento para ${this.client.users.cache.size} pessoas!` },
+      { name: 'Doe para mim e ganhe a minha versão premium' },
+      { name: `Use ${process.env.PREFIX}convite para poder me adicionar em seu servidor.` },
+      { name: `Conectada a ${this.client.channels.cache.size} canais em ${this.client.guilds.cache.size} servidores` },
+      { name: 'Visite o meu WebSite: https://kawaiigirl-website.glitch.me/' },
+      { name: `Posso contar o seu upvote? Se sim use ${process.env.PREFIX}votar e me ajude a compra pão de queijo!` }
     ]
-    console.log('Eu estou online!')
-    setInterval(() => this.client.editStatus('online', status[Math.floor(Math.random() * status.length)]), 15000)
+
+    setInterval(() => {
+      this.client.user.setPresence({
+        activities
+      })
+    }, 15000)
+
+    console.log('-------------------------------------------------------')
+    console.log(`Conectada em: ${this.client.user.username}`)
+    console.log(`Olá, mundo.\nUsuários: ${this.client.users.cache.size}.\nServidores: ${this.client.guilds.cache.size}.`)
+    console.log('-------------------------------------------------------')
   }
 }

@@ -1,10 +1,4 @@
-import EventContext from './EventContext'
-import CommandContext from './CommandContext'
-import EmbedBuilder from './EmbedBuilder'
-const Colors = require('./Colors.ts')
+import EventListener from './EventListener'
 export {
-  EventContext,
-  CommandContext,
-  EmbedBuilder,
-  Colors
+  EventListener
 }

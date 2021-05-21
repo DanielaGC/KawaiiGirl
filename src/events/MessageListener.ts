@@ -1,25 +1,24 @@
-import { EventContext } from '../utils'
-import { prefix, owner } from '../config.json'
-import { Message } from 'eris'
-import IllyaClient from '../Client'
-export default class MessageListener extends EventContext {
+import { Message } from 'discord.js'
+import { IllyaClient } from '../Client'
+import { EventListener } from '../utils'
+
+export class MessageListener extends EventListener {
   public constructor(client: IllyaClient) {
-    super(client, 'messageCreate')
+    super(client, 'message')
   }
 
   run(message: Message) {
+    if (message.channel.type === 'dm') return
     if (message.author.bot) return
-    if (message.channel.type !== 0) return
+    if (message.content.replace('!', '') === this.client.user.toString()) {
+      return message.channel.send(`Olá ${message.author}, meu nome é \`${this.client.user.username}\` meu prefix é \`${process.env.PREFIX}\` espero que se divirta comigo (Não pense besteira).`)
+    }
+    if (!message.content.startsWith(process.env.PREFIX)) return
+    const args: string[] = message.content.slice(process.env.PREFIX.length).trim().split(' ')
+    const commandName: string = args.shift().toLowerCase()
+    const command = this.client.commands.get(commandName) || this.client.commands.get(this.client.commands.aliases.get(commandName))
+    if (!command) return
 
-    if (!message.content.startsWith(prefix)) return
-
-    const args: string[] = message.content.slice(prefix.length).trim().split(/ +/g)
-    const cmd: string = args.shift().toLowerCase()
-    const commands = this.client.commands.get(cmd) || this.client.commands.get(this.client.aliases.get(cmd))
-
-    if (!commands) return
-    if (commands.config.dev && !owner.includes(message.author.id)) return
-    message.channel.sendTyping()
-    commands.run(message, args)
+    command.run(message, args)
   }
 }
