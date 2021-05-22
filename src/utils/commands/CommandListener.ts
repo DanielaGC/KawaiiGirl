@@ -9,8 +9,8 @@ module.exports = class CommandListener {
   constructor(client: IllyaClient, options: CommandInterface) {
     this.client = client
     this.name = options.name
-    this.aliases = options.aliases
-    this.permissions = options.permissions
+    this.aliases = options.aliases || []
+    this.permissions = options.permissions || []
   }
 
   run(ctx: object) { }
