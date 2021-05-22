@@ -1,6 +1,6 @@
 import { IllyaClient } from '../Client'
 
-export default class EventListenerthi {
+export default class EventListener {
   public client: IllyaClient
   public name: string
   public constructor(client: IllyaClient, name: string) {

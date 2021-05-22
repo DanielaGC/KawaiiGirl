@@ -13,11 +13,16 @@ export class IllyaClient extends Client {
   public loadEvents() {
     readdir(`${__dirname}/events`, (err, files) => {
       if (err) return console.log(err.message)
-      files.forEach((file) => {
+      files.forEach((file: string) => {
         const Events = require(`${__dirname}/events/${file}`)
-        const events = new Events[file.split('.')[0]](this)
+        const events = new Events(this)
         super.on(events.name, (...args) => events.run(...args))
       })
     })
+  }
+
+  public async startBot(token?: string) {
+    this.loadEvents()
+    return await super.login(token)
   }
 }

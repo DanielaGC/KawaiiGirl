@@ -2,7 +2,7 @@ import { Message } from 'discord.js'
 import { IllyaClient } from '../Client'
 import { EventListener } from '../utils'
 
-export class MessageListener extends EventListener {
+module.exports = class MessageListener extends EventListener {
   public constructor(client: IllyaClient) {
     super(client, 'message')
   }

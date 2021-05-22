@@ -2,7 +2,7 @@ import { ActivitiesOptions } from 'discord.js'
 import { IllyaClient } from '../Client'
 import { EventListener } from '../utils'
 
-export class ReadyListener extends EventListener {
+module.exports = class ReadyListener extends EventListener {
   public constructor(client: IllyaClient) {
     super(client, 'ready')
   }
@@ -20,11 +20,7 @@ export class ReadyListener extends EventListener {
       { name: `Posso contar o seu upvote? Se sim use ${process.env.PREFIX}votar e me ajude a compra pão de queijo!` }
     ]
 
-    setInterval(() => {
-      this.client.user.setPresence({
-        activities
-      })
-    }, 15000)
+    setInterval(() => this.client.user.setPresence({ activities }), 15000)
 
     console.log('-------------------------------------------------------')
     console.log(`Conectada em: ${this.client.user.username}`)
