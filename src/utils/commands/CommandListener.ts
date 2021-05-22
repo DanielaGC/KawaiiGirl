@@ -1,7 +1,7 @@
 import { IllyaClient } from "../../Client";
 import { CommandInterface } from './CommandInterface'
 
-module.exports = class CommandListener {
+export class CommandListener {
   public client: IllyaClient
   public name: string
   public aliases: string[]
