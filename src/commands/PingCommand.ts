@@ -6,11 +6,8 @@ module.exports = class PingCommand extends CommandListener {
   constructor(client: IllyaClient) {
     super(client, {
       name: 'ping',
-      aliases: [],
-      permissions: [{
-        entity: 'bot',
-        permissions: ['SEND_MESSAGES']
-      }]
+      category: 'misc',
+      description: 'Mostra o meu tempo de resposta e o tempo de resposta da API.'
     })
   }
 

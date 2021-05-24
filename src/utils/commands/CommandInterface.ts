@@ -1,5 +1,7 @@
 export interface CommandInterface {
   name: string
-  aliases: string[]
-  permissions: object[]
+  aliases?: string[]
+  description?: string
+  category: string
+  permissions?: object[]
 }
