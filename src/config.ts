@@ -2,9 +2,6 @@ import { Intents } from 'discord.js'
 require('dotenv').config()
 
 module.exports = {
-  owner: [
-    '395788326835322882'
-  ],
   options: {
     allowedMentions: {
       parse: ['users'],
