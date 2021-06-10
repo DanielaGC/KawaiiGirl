@@ -11,7 +11,8 @@ export class CommandListener {
       aliases: options.aliases || [],
       description: options.description,
       category: options.category,
-      permissions: options.permissions || []
+      permissions: options.permissions || [],
+      dev: options.dev || false
     }
   }
 }

@@ -24,9 +24,11 @@ module.exports = class MessageListener extends EventListener {
     message.channel.startTyping()
     if (userHas.length > 0) return message.channel.send(`${message.author.toString()}, você não tem permissão para ${userHas.map(perms => `\`${perms}\``).join(', ')}, você não pode usar esse comando.`)
     if (botHas.length > 0) return message.channel.send(`${message.author.toString()}, eu não tenho permissão para ${botHas.map(perms => `\`${perms}\``).join(', ')}, eu não posso executar esse comando.`)
+    if (command.config.dev && !process.env.BOT_DEV.includes(message.author.id)) return message.channel.send(`${message.author.toString()}, apenas a minha criadora tem a permissão de executar este comando!`)
     if (message.channel.typing) {
       message.channel.stopTyping(true)
     }
+
     command.run(message, args)
   }
 }

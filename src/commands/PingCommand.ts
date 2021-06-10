@@ -12,7 +12,7 @@ module.exports = class PingCommand extends CommandListener {
   }
 
   async run(message: Message, args: string[]) {
-    const msg = await message.channel.send('<a:carregando:846196201657598003> Calculando...')
+    const msg = await message.reply('<a:carregando:846196201657598003> Calculando...')
     await msg.edit(`:ping_pong: **|** ${message.author.toString()}, meu ping é \`${Math.round(this.client.ws.ping)}\`ms! A latência da API é \`${msg.createdTimestamp - message.createdTimestamp}\`ms!`)
   }
 }

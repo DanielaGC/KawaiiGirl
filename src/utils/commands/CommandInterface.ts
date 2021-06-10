@@ -4,4 +4,5 @@ export interface CommandInterface {
   description?: string
   category: string
   permissions?: object[]
+  dev?: boolean
 }
