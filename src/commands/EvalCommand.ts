@@ -1,6 +1,6 @@
 import { Message, MessageEmbed } from 'discord.js'
 import { IllyaClient } from '../Client'
-import { CommandListener, ColorUtils } from '../utils'
+import { CommandListener, ColorUtils, CommandContext } from '../utils'
 
 module.exports = class AvatarCommand extends CommandListener {
   constructor(client: IllyaClient) {
@@ -12,7 +12,7 @@ module.exports = class AvatarCommand extends CommandListener {
     })
   }
 
-  async run(message: Message, args: string[]) {
+  async run(message: Message, args: string[], ctx: CommandContext) {
     const util = require('util')
     const code = args.join(' ')
     try {

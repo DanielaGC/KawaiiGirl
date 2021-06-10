@@ -1,3 +1,7 @@
 {
-  
+  "inbox_tray": ":inbox_tray:",
+  "outbox_tray": ":outbox_tray:",
+  "error": ":x:",
+  "check_mark": "✅",
+  "loading": "<a:carregando:846196201657598003>"
 }

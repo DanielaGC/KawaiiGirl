@@ -1,6 +1,6 @@
 import { Message } from 'discord.js'
 import { IllyaClient } from '../Client'
-import { CommandListener } from '../utils'
+import { CommandContext, CommandListener } from '../utils'
 
 module.exports = class PingCommand extends CommandListener {
   constructor(client: IllyaClient) {
@@ -11,8 +11,8 @@ module.exports = class PingCommand extends CommandListener {
     })
   }
 
-  async run(message: Message, args: string[]) {
-    const msg = await message.reply('<a:carregando:846196201657598003> Calculando...')
+  async run(message: Message, args: Array<string>, ctx: CommandContext) {
+    const msg = await ctx.quote('loading', 'Calculando...')
     await msg.edit(`:ping_pong: **|** ${message.author.toString()}, meu ping é \`${Math.round(this.client.ws.ping)}\`ms! A latência da API é \`${msg.createdTimestamp - message.createdTimestamp}\`ms!`)
   }
 }

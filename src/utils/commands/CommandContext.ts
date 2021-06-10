@@ -4,14 +4,12 @@ const EmojiManager = require('../EmojiManager')
 export class CommandContext {
   client: IllyaClient
   message: Discord.Message
-  args: string[]
-  constructor(client: IllyaClient, message: Discord.Message, args: string[]) {
+  constructor(client: IllyaClient, message: Discord.Message) {
     this.client = client
     this.message = message
-    this.args = args
   }
 
-  quote(emoji: string, content: any) {
-    this.message.reply(`${EmojiManager.get(emoji)} **|** ${this.message.author}, ${content}`)
+  async quote(emoji: string, content: any) {
+    return this.message.reply(`${EmojiManager.get(emoji).mention} **|** ${this.message.author}, ${content}`)
   }
 }
