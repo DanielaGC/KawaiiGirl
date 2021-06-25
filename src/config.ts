@@ -7,6 +7,7 @@ module.exports = {
       parse: ['users'],
       repliedUser: true
     },
+    fetchAllMembers: true,
     messageCacheLifetime: 1800,
     messageSweepInterval: 1800,
     intents: Intents.ALL

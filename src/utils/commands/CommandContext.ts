@@ -9,7 +9,22 @@ export class CommandContext {
     this.message = message
   }
 
-  async quote(emoji: string, content: any) {
+  async quote(emoji: string, content: string) {
     return this.message.reply(`${EmojiManager.get(emoji).mention} **|** ${this.message.author}, ${content}`)
+  }
+
+  async getUser(target: string, author?: boolean) {
+    if (!target) {
+      if (author) return this.message.author
+      return undefined
+    }
+
+    try {
+      const member = await this.client.users.fetch(target.replace(/[<@!>]/g, ''))
+      return member
+    } catch {
+      if (author) return this.message.author
+      return undefined
+    }
   }
 }

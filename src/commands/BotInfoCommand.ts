@@ -15,11 +15,12 @@ module.exports = class BotInfoCommand extends CommandListener {
 
     moment.locale('pt-BR');
     const duration = moment.duration(this.client.uptime).format("D [dias], H [horas], m [minutos], s [segundos]");
-    var owners: Array<string> = []
+    const owners: Array<string> = []
 
-    process.env.BOT_DEV.trim().split(',').forEach(async (ids: string) => {
-      const owner = await this.client.users.fetch(ids)
-      await owners.push(owner.tag)
+    process.env.BOT_DEV.trim().split(',').forEach((ids: string) => {
+      this.client.users.fetch(ids).then((owner) => {
+        owners.push(owner.tag)
+      })
     })
 
     const embed = new MessageEmbed()
@@ -32,7 +33,7 @@ module.exports = class BotInfoCommand extends CommandListener {
     embed.addField('Me adicione', '[clique aqui](https://discord.com/oauth2/authorize?client_id=481282441294905344&scope=bot&permissions=1580723278)', true)
     embed.addField('Meu website', '[clique aqui](https://chinokafuu.glitch.me)', true)
     embed.addField('Suporte', '[clique aqui](https://discord.gg/Jr57UrsXeC)', true)
-    embed.addField('Menções Honrosas', `\`\`Obrigada ${message.author.tag} por está me usando\nObrigada ${(owners.length < 2) ? `à ${owners.join(', ')}` : `aos ${owners.join(', ')}`} por me ${(owners.length < 2) ? 'criar' : 'criarem'}!\`\``)
+    embed.addField('Menções Honrosas', `\`\`Obrigada ${message.author.tag} por está me usando\nObrigada à ${await owners.join(', ')} por me ${(owners.length < 2) ? 'criar' : 'criarem'}!\`\``)
 
     message.reply(embed)
   }

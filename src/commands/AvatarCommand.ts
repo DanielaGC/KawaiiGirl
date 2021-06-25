@@ -12,7 +12,7 @@ module.exports = class AvatarCommand extends CommandListener {
   }
 
   async run(message: Message, args: Array<string>, ctx: CommandContext) {
-    const member = this.client.users.cache.get(args[0]?.replace(/[<@!>]/g, '')) || message.author
+    const member = await ctx.getUser(args[0], true)
     const avatar = member.displayAvatarURL({ dynamic: true, size: 2048 })
     const embed = new MessageEmbed()
     embed.setColor(ColorUtils['pink'])

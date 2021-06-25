@@ -23,9 +23,27 @@ module.exports = class MessageListener extends EventListener {
     const userHas = permissions.userHas(command.config.permissions)
     const botHas = permissions.botHas(command.config.permissions)
     message.channel.startTyping()
-    if (userHas.length > 0) return ctx.quote('error', `você não tem permissão para ${userHas.map(perms => `\`${perms}\``).join(', ')}, você não pode usar esse comando.`)
-    if (botHas.length > 0) return ctx.quote('error', `eu não tenho permissão para ${botHas.map(perms => `\`${perms}\``).join(', ')}, eu não posso executar esse comando.`)
-    if (command.config.dev && !process.env.BOT_DEV.includes(message.author.id)) return ctx.quote('error', 'apenas a minha criadora tem a permissão de executar este comando!')
+    if (userHas.length > 0) {
+      if (message.channel.typing) {
+        message.channel.stopTyping(true)
+      }
+      
+      return ctx.quote('error', `você não tem permissão para ${userHas.map(perms => `\`${perms}\``).join(', ')}, você não pode usar esse comando.`)
+    }
+    if (botHas.length > 0) {
+      if (message.channel.typing) {
+        message.channel.stopTyping(true)
+      }
+
+      return ctx.quote('error', `eu não tenho permissão para ${botHas.map(perms => `\`${perms}\``).join(', ')}, eu não posso executar esse comando.`)
+    }
+    if (command.config.dev && !process.env.BOT_DEV.includes(message.author.id)) {
+      if (message.channel.typing) {
+        message.channel.stopTyping(true)
+      }
+
+      return ctx.quote('error', 'apenas a minha criadora tem a permissão de executar este comando!')
+    }
     if (message.channel.typing) {
       message.channel.stopTyping(true)
     }

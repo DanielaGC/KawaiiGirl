@@ -2,9 +2,11 @@
   "name": "kawaiigirl",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/index.ts",
+  "main": "index.ts",
   "scripts": {
-    "start": "tsc && node dist/index.js"
+    "build": "tsc",
+    "build:start": "tsc && node dist/index.js",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
