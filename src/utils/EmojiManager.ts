@@ -12,13 +12,15 @@ module.exports.get = (name: string) => {
     return {
       name: emote[0],
       id: emote[1],
+      reaction: `${emote[0]}${emoji[1] ? `:${emote[1]}`: ''}`,
       mention: emoji
     }
   } else {
     return {
       name: 'bug',
-      id: ':bug:',
-      mention: ':bug:'
+      id: '🐛',
+      reaction: '🐛',
+      mention: '🐛'
     }
   }
 }

@@ -1,8 +1,9 @@
 {
-  "inbox_tray": ":inbox_tray:",
-  "outbox_tray": ":outbox_tray:",
-  "error": ":x:",
+  "inbox_tray": "📥",
+  "outbox_tray": "📤",
+  "error": "❌",
   "check_mark": "✅",
   "loading": "<a:carregando:846196201657598003>",
-  "tada": ":tada:"
+  "tada": "🎉",
+  "warn": "⚠️"
 }
