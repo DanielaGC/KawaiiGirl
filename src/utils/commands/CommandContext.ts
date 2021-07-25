@@ -20,7 +20,7 @@ export class CommandContext {
     }
 
     try {
-      const member = await this.client.users.fetch(target.replace(/[<@!>]/g, ''))
+      const member = await this.client.users.fetch(`${BigInt(target.replace(/[<@!>]/g, ''))}`)
       return member
     } catch {
       if (author) return this.message.author

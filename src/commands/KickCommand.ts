@@ -45,7 +45,7 @@ module.exports = class KickCommand extends CommandListener {
         embed.addField('Quem expulsou', message.author.tag, true)
         embed.addField('Motivo', reason, true)
 
-        modChannel.send(embed)
+        modChannel.send({ embeds: [embed] })
       }
       ctx.quote('tada', `o usuário **${member.tag}** foi expulso com sucesso.`)
     })

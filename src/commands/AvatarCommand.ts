@@ -19,6 +19,6 @@ module.exports = class AvatarCommand extends CommandListener {
     embed.setImage(avatar)
     embed.addField('Aqui está o avatar', `Avatar de ${member.toString()}. Baixe o avatar clicando [aqui](${avatar})`)
 
-    message.reply(embed)
+    message.reply({ embeds: [embed] })
   }
 }

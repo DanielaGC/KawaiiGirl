@@ -17,7 +17,7 @@ module.exports = class AnnounceCommand extends CommandListener {
   }
 
   async run(message: Message, args: Array<string>, ctx: CommandContext) {
-    const channel = message.guild.channels.cache.get(args[0]?.replace(/[<#>]/g, '')) as TextChannel
+    const channel = message.guild.channels.cache.get(`${BigInt(args[0]?.replace(/[<#>]/g, ''))}`) as TextChannel
     if (!channel) return ctx.quote('error', 'você precisa mencionar o canal de texto que deseja enviar este anúncio')
     const msg = args.slice(1).join(' ')
     if (!msg) return ctx.quote('error', 'você não colocou o que deseja falar no seu anúncio')
@@ -31,19 +31,20 @@ module.exports = class AnnounceCommand extends CommandListener {
     const m = await ctx.quote('warn', 'você está preste a enviar um anúncio para o canal de texto selecionado, deseja mencionar os membros online?')
     await m.react(EmojiManager.get('check_mark').reaction)
     await m.react(EmojiManager.get('error').reaction)
-    const collector = m.createReactionCollector((reaction: MessageReaction, user: User) => (user.id !== this.client.user.id && user.id === message.author.id) && ([EmojiManager.get('check_mark').name, EmojiManager.get('error').name].includes(reaction.emoji.name)))
+    const filter = (reaction: MessageReaction, user: User) => (user.id !== this.client.user.id && user.id === message.author.id) && ([EmojiManager.get('check_mark').name, EmojiManager.get('error').name].includes(reaction.emoji.name))
+    const collector = m.createReactionCollector({ filter })
     collector.on('collect', (r: MessageReaction) => {
       switch (r.emoji.name) {
         case EmojiManager.get('check_mark').name: {
           m.delete()
-          channel.send({ content: '@here', embed, allowedMentions: { parse: ['everyone'] } }).then(() => {
+          channel.send({ content: '@here', embeds: [embed], allowedMentions: { parse: ['everyone'] } }).then(() => {
             ctx.quote('check_mark', `o anúncio foi enviado com sucesso para o ${channel}`)
           })
         }
           break
         case EmojiManager.get('error').name: {
           m.delete()
-          channel.send(embed).then(() => {
+          channel.send({ embeds: [embed] }).then(() => {
             ctx.quote('check_mark', `o anúncio foi enviado com sucesso para o ${channel}`)
           })
         }
