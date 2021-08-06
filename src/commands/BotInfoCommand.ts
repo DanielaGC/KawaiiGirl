@@ -18,7 +18,7 @@ module.exports = class BotInfoCommand extends CommandListener {
     const owners: Array<string> = []
 
     process.env.BOT_DEV.trim().split(',').forEach((ids: string) => {
-      this.client.users.fetch(ids).then((owner) => {
+      this.client.users.fetch(`${BigInt(ids)}`).then((owner) => {
         owners.push(owner.tag)
       })
     })
@@ -35,6 +35,6 @@ module.exports = class BotInfoCommand extends CommandListener {
     embed.addField('Suporte', '[clique aqui](https://discord.gg/Jr57UrsXeC)', true)
     embed.addField('Menções Honrosas', `\`\`Obrigada ${message.author.tag} por está me usando\nObrigada à ${await owners.join(', ')} por me ${(owners.length < 2) ? 'criar' : 'criarem'}!\`\``)
 
-    message.reply(embed)
+    message.reply({ embeds: [embed] })
   }
 }

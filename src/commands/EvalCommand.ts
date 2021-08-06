@@ -36,7 +36,7 @@ module.exports = class AvatarCommand extends CommandListener {
         value: `\`\`\`js\n${str}\`\`\``
       }])
 
-      message.reply(embed)
+      message.reply({ embeds: [embed] })
     } catch (err) {
       message.react('❌')
       const embed = new MessageEmbed()
@@ -49,7 +49,7 @@ module.exports = class AvatarCommand extends CommandListener {
         value: `\`\`\`${err}\`\`\``
       }])
 
-      message.reply(embed)
+      message.reply({ embeds: [embed] })
     }
   }
 }

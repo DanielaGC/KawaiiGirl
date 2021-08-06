@@ -9,6 +9,6 @@ module.exports = {
     },
     messageCacheLifetime: 1800,
     messageSweepInterval: 1800,
-    intents: Intents.ALL
+    intents: 14335
   }
 }

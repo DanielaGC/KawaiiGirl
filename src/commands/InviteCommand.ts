@@ -20,7 +20,7 @@ module.exports = class InviteCommand extends CommandListener {
     embed.setAuthor(message.author.username, message.author.avatarURL({ dynamic: true }))
     embed.setFooter(this.client.user.username, this.client.user.avatarURL({ dynamic: true }))
 
-    message.author.send(embed).then(() => {
+    message.author.send({ embeds: [embed] }).then(() => {
       ctx.quote('inbox_tray', 'verifique o seu privado, eu enviei o meu convite lá! :heart:')
     }).catch(() => {
       ctx.quote('error', 'eu não consegui enviar nada no seu privado, parece que ele está fechado.')
