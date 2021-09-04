@@ -1,5 +1,4 @@
 import { ClientOptions } from "discord.js";
-require("dotenv").config();
 
 const options: ClientOptions = {
   allowedMentions: {
