@@ -2,7 +2,7 @@ import { Message } from 'discord.js'
 import { IllyaClient } from '../Client'
 import { CommandContext, CommandListener } from '../utils'
 
-module.exports = class PingCommand extends CommandListener {
+export default class PingCommand extends CommandListener {
   constructor(client: IllyaClient) {
     super(client, {
       name: 'ping',

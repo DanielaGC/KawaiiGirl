@@ -1,14 +1,16 @@
-import { Intents } from 'discord.js'
-require('dotenv').config()
+import { ClientOptions } from "discord.js";
+require("dotenv").config();
 
-module.exports = {
-  options: {
-    allowedMentions: {
-      parse: ['users'],
-      repliedUser: true
-    },
-    messageCacheLifetime: 1800,
-    messageSweepInterval: 1800,
-    intents: 14335
-  }
-}
+const options: ClientOptions = {
+  allowedMentions: {
+    parse: ["users"],
+    repliedUser: true,
+  },
+  // [deprecated] messageCacheLifetime: 1800,
+  // [deprecated] messageSweepInterval: 1800,
+  intents: 14335,
+};
+
+export default {
+  options
+};

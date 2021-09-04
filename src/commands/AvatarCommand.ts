@@ -1,8 +1,8 @@
-import { Message, MessageEmbed } from 'discord.js'
+import { ColorResolvable, Message, MessageEmbed } from 'discord.js'
 import { IllyaClient } from '../Client'
 import { CommandListener, ColorUtils, CommandContext } from '../utils'
 
-module.exports = class AvatarCommand extends CommandListener {
+export default class AvatarCommand extends CommandListener {
   constructor(client: IllyaClient) {
     super(client, {
       name: 'avatar',
@@ -15,7 +15,7 @@ module.exports = class AvatarCommand extends CommandListener {
     const member = await ctx.getUser(args[0], true)
     const avatar = member.displayAvatarURL({ dynamic: true, size: 2048 })
     const embed = new MessageEmbed()
-    embed.setColor(ColorUtils['pink'])
+    embed.setColor(ColorUtils['pink'] as ColorResolvable)
     embed.setImage(avatar)
     embed.addField('Aqui está o avatar', `Avatar de ${member.toString()}. Baixe o avatar clicando [aqui](${avatar})`)
 

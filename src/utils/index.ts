@@ -1,9 +1,10 @@
-const ColorUtils = require('./ColorUtils.json')
+import ColorUtils from './ColorUtils.json'
 import { CommandContext } from './commands/CommandContext'
 import { CommandListener } from './commands/CommandListener'
 import { CommandPermissions } from './commands/CommandPermissions'
-const EmojiManager = require('./EmojiManager')
+import EmojiManager from './EmojiManager'
 import EventListener from './EventListener'
+
 export {
   EventListener,
   CommandListener,
