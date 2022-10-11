@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@types/moment-duration-format": "^2.2.3",
-    "@types/node": "^18.8.3",
+    "@types/node": "^18.8.4",
     "@types/ws": "^8.5.3",
     "discord-api-types": "^0.37.12",
     "dotenv": "^16.0.3",
