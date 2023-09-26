@@ -14,7 +14,7 @@
   "dependencies": {
     "@lavacord/discord.js": "^0.0.7",
     "discord.js": "github:discordjs/discord.js#master",
-    "lowdb": "^5.1.0",
+    "lowdb": "^6.0.1",
     "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2"
   },
