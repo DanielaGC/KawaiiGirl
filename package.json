@@ -22,7 +22,7 @@
     "@types/moment-duration-format": "^2.2.4",
     "@types/node": "^20.7.2",
     "@types/ws": "^8.5.6",
-    "discord-api-types": "^0.37.58",
+    "discord-api-types": "^0.37.60",
     "dotenv": "^16.3.1",
     "typescript": "^5.2.2"
   }
