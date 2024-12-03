@@ -23,7 +23,7 @@
     "@types/node": "^22.5.4",
     "@types/ws": "^8.5.13",
     "discord-api-types": "^0.37.100",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.4.6",
     "typescript": "^5.7.2"
   }
 }
