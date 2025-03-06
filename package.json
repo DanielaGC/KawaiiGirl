@@ -24,6 +24,6 @@
     "@types/ws": "^8.5.14",
     "discord-api-types": "^0.37.119",
     "dotenv": "^16.4.7",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.2"
   }
 }
