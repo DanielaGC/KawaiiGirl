@@ -19,7 +19,7 @@
     "moment-duration-format": "^2.3.2"
   },
   "devDependencies": {
-    "@types/moment-duration-format": "^2.2.6",
+    "@types/moment-duration-format": "^2.2.7",
     "@types/node": "^22.15.18",
     "@types/ws": "^8.18.1",
     "discord-api-types": "^0.38.8",
